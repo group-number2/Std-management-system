@@ -1,2 +1,2 @@
 # Std-management-system
-This ripo is all about student management sysytem
+This  is all about student management sysytem
