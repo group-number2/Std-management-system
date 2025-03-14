@@ -1,12 +1,12 @@
 <?php
 session_start();
-include('config.php'); // Include database connection
+include('config.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Use prepared statements for security
+    
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         
-        // Verify the password
+        
         if (password_verify($password, $user['password'])) {
             $_SESSION['username'] = $username;
-            $_SESSION['department'] = $user['department']; // Store department info in session
-            header("Location: dashboard.php"); // Redirect to dashboard after successful login
+            $_SESSION['department'] = $user['department']; 
+            header("Location: dashboard.php"); 
             exit();
         } else {
             $error = "Invalid password!";
@@ -43,6 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 if (isset($error)) {
-    echo "<p style='color:red;'>$error</p>"; // Display error message
+    echo "<p style='color:red;'>$error</p>"; 
 }
 ?>
