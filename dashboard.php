@@ -46,19 +46,19 @@ if (!isset($_SESSION['username'])) {
     <div class="wrapper">
         
         <div class="sidebar">
-            <div class="sidebar-heading">📚 Student Management</div>
+            <div class="sidebar-heading"> Student Management</div>
             <div class="sidebar-links">
-                <a href="#">🏠 Dashboard</a>
-                <a href="add_student.php">👨‍🎓 Add Student</a>
-                <a href="add_grades.php">📝 Add Grades</a>
-                <a href="report.php">📊 Reports</a>
-                <a href="view_students.php">📊 View Students</a>
-                <a href="view_coure.php">📊 View Courses</a>
-                <a href="add_course.php">📊 Add Course</a>
-                <a href="academic_details.php">📊 Academic Details</a>
-                <a href="grade.cal.php">©️Grade Calculator</a>
-                <a href="attendece.php">🎂 Attendance</a>
-                <a href="dele_stu.php">👅 delete_student</a>
+                <a href="#">Dashboard</a>
+                <a href="add_student.php"> Add Student</a>
+                <a href="add_grades.php"> Add Grades</a>
+                <a href="report.php"> Reports</a>
+                <a href="view_students.php"> View Students</a>
+                <a href="view_coure.php"> View Courses</a>
+                <a href="add_course.php"> Add Course</a>
+                <a href="academic_details.php"> Academic Details</a>
+                <a href="grade.cal.php">©Grade Calculator</a>
+                <a href="attendece.php"> Attendance</a>
+                <a href="dele_stu.php"> delete_student</a>
                 
             </div>
         </div>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['username'])) {
         <div class="content" style="flex-grow: 1;">
             <nav class="navbar">
                 <div class="navbar-inner">
-                    <h5>Welcome, <?php echo "MR." . $_SESSION['username'] ; ?>! 👋  what do you want</h5>
+                    <h5>Welcome, <?php echo "MR." . $_SESSION['username'] ; ?>!   what do you want</h5>
                     <div class="navbar-right">
                         <a href="logout.php" class="btn btn-danger">Logout</a>
                     </div>
@@ -89,10 +89,10 @@ if (!isset($_SESSION['username'])) {
                 </div>
 
                 <div class="actions">
-                    <a href="add_student.php" class="btn">➕ Add Student</a>
-                    <a href="add_grades.php" class="btn">✏️ Enter Grades</a>
-                    <a href="report.php" class="btn">📄 Reports</a>
-                    <a href="view_students.php" class="btn">📄 View Students</a>
+                    <a href="add_student.php" class="btn"> Add Student</a>
+                    <a href="add_grades.php" class="btn"> Enter Grades</a>
+                    <a href="report.php" class="btn"> Reports</a>
+                    <a href="view_students.php" class="btn"> View Students</a>
                     
                     
                 </div>
