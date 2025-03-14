@@ -1,49 +1,46 @@
 <?php
 session_start([ 
-    'cookie_lifetime' => 86400, // 1 day
-    'cookie_secure'   => true,  // Use secure cookies
-    'cookie_httponly' => true,  // Prevent JavaScript from accessing session cookie
-    'use_strict_mode' => true   // Enable strict session mode
+    'cookie_lifetime' => 86400, 
+    'cookie_secure'   => true,  
+    'cookie_httponly' => true,  
+    'use_strict_mode' => true  
 ]);
 
-// Error handling configuration
-ini_set('display_errors', 0);  // Don't display errors to the user
-ini_set('log_errors', 1);      // Log errors to file for debugging
 
-include('config.php');  // Include secure database connection
+ini_set('display_errors', 0);  
+ini_set('log_errors', 1);    
 
-// Security headers to prevent XSS and other attacks
+include('config.php');  
 header("Content-Security-Policy: default-src 'self'");
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: DENY");
 
-// Check if allowed_batch is set in the session
 if (!isset($_SESSION['allowed_batch']) || empty($_SESSION['allowed_batch'])) {
     die("<h1>Error: Batch not set. Please log in again.</h1>");
 }
 
-// Database query and data retrieval
+
 try {
-    // SQL query to fetch course, grade, attendance, and student details
+    
     $query = "SELECT students.id, students.name, courses.name AS course_name, 
                      grades.grade, attendance.status
               FROM students
               LEFT JOIN attendance ON students.id = attendance.student_id
               LEFT JOIN grades ON students.id = grades.student_id
               LEFT JOIN courses ON grades.course_id = courses.id
-              WHERE students.batch = ?";  // Use the batch stored in session
+              WHERE students.batch = ?";  
     
-    // Prepare statement and bind parameters
+    
     $stmt = $conn->prepare($query);
     if ($stmt === false) {
         throw new Exception("Database error: Unable to prepare query.");
     }
-    $stmt->bind_param("i", $_SESSION['allowed_batch']); // Bind batch parameter
+    $stmt->bind_param("i", $_SESSION['allowed_batch']); 
     $stmt->execute();
     $result = $stmt->get_result();
     
 } catch (Exception $e) {
-    // Log and show error if query fails
+    
     error_log("Database error: " . $e->getMessage());
     exit('<h1>System Maintenance</h1><p>Please try again later</p>');
 }
@@ -57,7 +54,7 @@ try {
     <title>Student Course Grades & Attendance</title>
     <link rel="stylesheet" href="style2.css">
     <script>
-        // Function to export table data to CSV
+        
         function exportTableToCSV(filename) {
             var csv = [];
             var rows = document.querySelectorAll("table tr");
@@ -99,7 +96,7 @@ try {
         </thead>
         <tbody>
             <?php 
-            // Fetch and display data from the result set
+           
             while ($row = $result->fetch_assoc()) { ?>
             <tr>
                 <td><?php echo htmlspecialchars($row['id'], ENT_QUOTES); ?></td>
